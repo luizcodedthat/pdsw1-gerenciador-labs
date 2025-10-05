@@ -1,0 +1,1707 @@
+{
+  "listaLabs": [
+    {
+      "id": "lab1",
+      "name": "Lab 1",
+      "category": "ti",
+      "capacity": 24,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r1",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r2",
+          "authorId": "u2"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r3",
+          "authorId": "u3"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r4",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r2",
+          "authorId": "r7"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r5",
+          "authorId": "u2"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r6",
+          "authorId": "u3"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r7",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r8",
+          "authorId": "u2"
+        }
+      ]
+    },
+    {
+      "id": "lab2",
+      "name": "Lab 2",
+      "category": "ti",
+      "capacity": 20,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r9",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r10",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r11",
+          "authorId": "u6"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r12",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r13",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r14",
+          "authorId": "u6"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r15",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r16",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab3",
+      "name": "Lab 3",
+      "category": "ti",
+      "capacity": 30,
+      "maintenance": true,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r17",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r18",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r19",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r20",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r21",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r22",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r23",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab4",
+      "name": "Lab 4",
+      "category": "ti",
+      "capacity": 18,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r24",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r25",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r26",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r27",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r28",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r29",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r30",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r31",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r32",
+          "authorId": "u10"
+        }
+      ]
+    },
+    {
+      "id": "lab5",
+      "name": "Lab 5",
+      "category": "ti",
+      "capacity": 26,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r15",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r16",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r17",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r18",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r19",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r20",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r21",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab6",
+      "name": "Lab 6",
+      "category": "ti",
+      "capacity": 22,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r22",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r23",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r24",
+          "authorId": "u12"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r25",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r26",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r27",
+          "authorId": "u12"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r28",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r29",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab7",
+      "name": "Lab 7",
+      "category": "ti",
+      "capacity": 28,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r30",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r31",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r32",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r33",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r34",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r35",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r36",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r37",
+          "authorId": "u14"
+        }
+      ]
+    },
+    {
+      "id": "lab8",
+      "name": "Lab 8",
+      "category": "ti",
+      "capacity": 24,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r1",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r2",
+          "authorId": "u2"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r3",
+          "authorId": "u3"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r4",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r5",
+          "authorId": "u2"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r6",
+          "authorId": "u3"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r7",
+          "authorId": "u1"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r8",
+          "authorId": "u2"
+        }
+      ]
+    },
+    {
+      "id": "lab9",
+      "name": "Lab 9",
+      "category": "ti",
+      "capacity": 20,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r9",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r10",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r11",
+          "authorId": "u6"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r12",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r13",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r14",
+          "authorId": "u6"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r15",
+          "authorId": "u4"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r16",
+          "authorId": "u5"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab10",
+      "name": "Lab 10",
+      "category": "ti",
+      "capacity": 30,
+      "maintenance": true,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r17",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r18",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r19",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r20",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r21",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r22",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r23",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab11",
+      "name": "Lab 11",
+      "category": "ti",
+      "capacity": 18,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r24",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r25",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r26",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r27",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r28",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r29",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r30",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r31",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r32",
+          "authorId": "u10"
+        }
+      ]
+    },
+    {
+      "id": "lab12",
+      "name": "Lab 12",
+      "category": "ti",
+      "capacity": 26,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r15",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r16",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r17",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r18",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r19",
+          "authorId": "u9"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r20",
+          "authorId": "u7"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r21",
+          "authorId": "u8"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab13",
+      "name": "Lab 13",
+      "category": "ti",
+      "capacity": 22,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": true,
+          "reservationId": "r22",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": true,
+          "reservationId": "r23",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": true,
+          "reservationId": "r24",
+          "authorId": "u12"
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": true,
+          "reservationId": "r25",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": true,
+          "reservationId": "r26",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": true,
+          "reservationId": "r27",
+          "authorId": "u12"
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": true,
+          "reservationId": "r28",
+          "authorId": "u10"
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": true,
+          "reservationId": "r29",
+          "authorId": "u11"
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        }
+      ]
+    },
+    {
+      "id": "lab14",
+      "name": "Lab 14",
+      "category": "ti",
+      "capacity": 28,
+      "maintenance": false,
+      "timeSlots": [
+        {
+          "startTime": "07:45",
+          "endTime": "08:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:15",
+          "reserved": true,
+          "reservationId": "r30",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "09:35",
+          "endTime": "10:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "10:20",
+          "endTime": "11:05",
+          "reserved": true,
+          "reservationId": "r31",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "11:05",
+          "endTime": "11:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:45",
+          "reserved": true,
+          "reservationId": "r32",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "13:45",
+          "endTime": "14:30",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "14:30",
+          "endTime": "15:15",
+          "reserved": true,
+          "reservationId": "r33",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "15:35",
+          "endTime": "16:20",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:05",
+          "reserved": true,
+          "reservationId": "r34",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "17:05",
+          "endTime": "17:50",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "18:15",
+          "endTime": "19:00",
+          "reserved": true,
+          "reservationId": "r35",
+          "authorId": "u14"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:45",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "19:45",
+          "endTime": "20:30",
+          "reserved": true,
+          "reservationId": "r36",
+          "authorId": "u13"
+        },
+        {
+          "startTime": "20:30",
+          "endTime": "21:15",
+          "reserved": false,
+          "reservationId": null,
+          "authorId": null
+        },
+        {
+          "startTime": "21:15",
+          "endTime": "22:00",
+          "reserved": true,
+          "reservationId": "r37",
+          "authorId": "u14"
+        }
+      ]
+    }
+  ],
+  "reservas": [
+    {
+      "id": "r1",
+      "authorId": "u1",
+      "timeSlotStart": 1,
+      "timeSlotEnd": 3,
+      "date": "2025-10-06"
+    }
+  ]
+}
