@@ -53,7 +53,7 @@ const availability = computed(() => calculateAvailability());
       <p class="capacity-text">Comporta {{ capacity }} alunos.</p>
     </div>
 
-    <RouterLink class="link-lab" :to="`/lab/${labID}`"> Ir para reserva </RouterLink>
+    <RouterLink class="link-lab" :to="`/laboratorios/${labID}`"> Ir para reserva </RouterLink>
 
   </div>
 
