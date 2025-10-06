@@ -1703,5 +1703,61 @@
       "timeSlotEnd": 3,
       "date": "2025-10-06"
     }
+  ],
+
+
+  "chamados": [
+    {
+      "id": 1234,
+      "data": "16/09/2025",
+      "status": "Aberto",
+      "titulo": "Problema na porta USB do computador da sala 3",
+      "descricao": "O computador está com a primeira porta USB danificada, impossibilitando o uso de pendrives e outros dispositivos externos.",
+      "comentarios": []
+    },
+    {
+      "id": 5678,
+      "data": "12/08/2025",
+      "status": "Em andamento",
+      "titulo": "Mouse do PC 462871 não está funcionando",
+      "descricao": "O mouse não está funcionando em nenhuma porta. Já testei outro mouse e o problema persiste.",
+      "comentarios": []
+    },
+    {
+      "id": 9012,
+      "data": "23/05/2025",
+      "status": "Concluído",
+      "titulo": "Problema no teclado do PC do laboratório 2",
+      "descricao": "Nenhuma tecla funciona! Já tentei reiniciar e conectar novamente o teclado, mas sem sucesso.",
+      "comentarios": []
+    },
+    {
+      "id": 3456,
+      "data": "01/03/2025",
+      "status": "Fechado",
+      "titulo": "PC 8456184 dando tela azul frequentemente",
+      "descricao": "Hoje de manhã, quando tentei ligar o computador, ele ficou travado na tela azul. Precisa de análise de hardware.",
+      "comentarios": []
+    },
+    {
+      "id": 7890,
+      "data": "16/09/2025",
+      "status": "Aberto",
+      "titulo": "Manutenção no PC 6537822 com falta de espaço",
+      "descricao": "O computador está sem espaço de armazenamento suficiente para atualizações do sistema e novos programas.",
+      "comentarios": []
+    },
+    {
+      "id": 987,
+      "data": "12/08/2025",
+      "status": "Em andamento",
+      "titulo": "Navegador do PC 123856 não abre corretamente",
+      "descricao": "Quando tento abrir o Chrome, ele fica com a tela preta e trava o sistema. Já reinstalei o navegador.",
+      "comentarios": []
+    }
   ]
 }
+
+
+
+
