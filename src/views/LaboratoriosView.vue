@@ -3,6 +3,7 @@
 import { ref, computed, onMounted } from 'vue';
 import LabCardList from '@/components/labs/LabCardList.vue';
 import SearchArea from '@/components/labs/SearchArea.vue';
+import Navbar from '@/components/Navbar.vue';
 
 const mockData = ref([])
 const filter = ref('')
@@ -25,6 +26,9 @@ const filteredLabs = computed(() => {
 </script>
 
 <template>
+  <div>
+    <Navbar />
+  </div>
   <div id="content">
 
     <SearchArea @search="onSearch" />
