@@ -1,8 +1,8 @@
 export class Slot {
   constructor(data = {}) {
     this.index = data.index ?? null;
-    this.start = data.start || null;  // "07:00"
-    this.end = data.end || null;      // "07:50"
+    this.start = data.start || null;
+    this.end = data.end || null;
     this.duration = data.duration || this.calculateDuration();
   }
 
