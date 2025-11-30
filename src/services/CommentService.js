@@ -1,5 +1,5 @@
 import DAOService from "@/services/DAOService";
-import { Comment } from "@/models/Comment";
+import { Comment } from "@/models/CommentModel";
 
 export class CommentService {
   constructor() {
@@ -13,8 +13,8 @@ export class CommentService {
 
     if (!comment.isValid()) throw new Error("Objeto Comment inválido");
 
-    const id = await this.dao.insert(comment.toObject());
-    return new Comment({ id, ...comment.toObject() });
+    const id = await this.dao.insert(comment.toJSON());
+    return new Comment({ id, ...comment.toJSON() });
   }
 
   async getAll() {
