@@ -10,6 +10,7 @@ export class User {
     this.userId = data.userId || null;
     this.name = data.name || '';
     this.email = data.email || '';
+    this.picture = data.picture || '',
     this.accountType = data.accountType || USER_ROLES.STUDENT;
   }
 
@@ -25,6 +26,7 @@ export class User {
       uid: this.userId,
       name: this.name,
       email: this.email,
+      picture: this.picture,
       accountType: this.accountType
     };
   }
