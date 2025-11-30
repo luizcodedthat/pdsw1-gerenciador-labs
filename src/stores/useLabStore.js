@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { LabService } from "@/services/LabService";
+import LabService from "@/services/LabService";
 
 export const useLabStore = defineStore("labs", {
     state: () => ({
@@ -25,7 +25,7 @@ export const useLabStore = defineStore("labs", {
 
             this.loading = true;
 
-            const labs = await LabService.getAll();
+            const labs = await LabService.getAllLabs();
             this.labs = labs;
             this.lastFetched = now;
 

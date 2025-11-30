@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { CommentService } from "@/services/CommentService";
+import CommentService from "@/services/CommentService";
 
 export const useCommentStore = defineStore("comments", {
     state: () => ({
@@ -22,8 +22,7 @@ export const useCommentStore = defineStore("comments", {
             }
 
             this.loading = true;
-            const commentService = new CommentService()
-            const comments = await commentService.getByLab(labId);
+            const comments = await CommentService.getByLab(labId);
 
             this.commentsByLab[labId] = comments;
             this.lastFetched[labId] = now;
@@ -31,8 +30,7 @@ export const useCommentStore = defineStore("comments", {
         },
 
         async addComment(comment) {
-            const commentService = new CommentService()
-            const created = await commentService.create(comment);
+            const created = await CommentService.create(comment);
 
             if (!this.commentsByLab[comment.labId
             ]) {
