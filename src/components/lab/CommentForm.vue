@@ -1,20 +1,16 @@
 <script setup>
 
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { Comment } from '@/models/CommentModel';
 import { useRoute } from 'vue-router';
 import { useCommentStore } from '@/stores/useCommentStore';
 import { useAuthStore } from '@/stores/useAuthStore';
 
 const route = useRoute();
-const commentStore = useCommentStore();
-const auth = useAuthStore();
-
 const labId = route.params.id;
 
-onMounted(async () => {
-    await commentStore.loadComments(labId);
-});
+const commentStore = useCommentStore();
+const auth = useAuthStore();
 
 const text = ref("");
 const sending = ref(false);
