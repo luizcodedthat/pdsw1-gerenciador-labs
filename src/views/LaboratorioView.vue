@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue'
 import { AlarmClock, Building, Computer, Signal, StickyNote } from 'lucide-vue-next'
 import { useCurrentReservation } from '@/composables/useCurrentReservation'
 import Navbar from '@/components/Navbar.vue'
+import CommentsList from '@/components/lab/CommentsList.vue'
+import CommentForm from '@/components/lab/CommentForm.vue'
 
 const props = defineProps({ id: String })
 
@@ -145,9 +147,12 @@ onMounted(async () => {
         </section>
 
         <section id="comments">
-            <div class="header"></div>
-            <div class="comments-list"></div>
-            <div class="comment-form"></div>
+            <div class="header">
+                <h2 class="section-title">Comentários</h2>
+                <h3 class="section-subtitle">Comentários sobre o estado do laboratório.</h3>
+            </div>
+            <CommentsList />
+            <CommentForm />
         </section>
 
     </div>
@@ -160,6 +165,11 @@ onMounted(async () => {
     margin: 2.5rem auto;
     box-sizing: content-box;
     padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 10px;
+    padding: 10px 0;
 }
 
 .lab-title {
@@ -200,7 +210,8 @@ onMounted(async () => {
     width: fit-content;
 }
 
-.card-text-top {
+.card-text-top,
+.ticket-status {
     font-size: var(--font-size-sm);
     font-weight: 400;
 }
@@ -223,7 +234,7 @@ onMounted(async () => {
     border-radius: 6px;
     border: 1px solid var(--color-gray-border);
     width: fit-content;
-    min-width: 230px;
+    min-width: 250px;
 }
 
 .next-reservation-card .top {
@@ -238,24 +249,19 @@ onMounted(async () => {
 }
 
 .reservation-range h3 {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: 400;
     color: var(--color-gray-text);
-}
-
-.next-reservation-card .top h3 {
-    font-size: var(--font-size-xs);
-    font-weight: 400;
 }
 
 .next-card-title {
     font-size: var(--font-size-base);
     font-weight: 500;
-    margin: 5px 0 3px;
+    margin: 10px 0 4px;
 }
 
 .next-card-text-bottom {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     font-weight: 400;
     color: var(--color-gray-text);
 }
@@ -286,5 +292,23 @@ onMounted(async () => {
 
 .btn-primary {
     padding: 10px 16px;
+}
+
+.header {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 40px 0 0;
+}
+
+.section-title {
+    margin-bottom: 6px;
+}
+
+.section-subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    color: hsl(215, 19%, 35%);
 }
 </style>
