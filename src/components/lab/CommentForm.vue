@@ -42,23 +42,36 @@ async function submitComment() {
 
 <template>
 
-<div class="form">
+  <div class="form">
     <form @submit.prevent="submitComment">
-        <label for="comment-field">Deixe seu comentário</label>
-        <textarea name="comment-field" id="comment-field" placeholder="Digite sua mensagem aqui" rows="3" v-model="text"></textarea>
-        <button class="btn-primary" type="submit" :disabled="sending">{{ sending ? "Enviando..." : "Enviar comentário" }}</button>
+      <label id="comment-label" for="comment-field">Deixe seu comentário</label>
+      <textarea name="comment-field" id="comment-field" placeholder="Digite sua mensagem aqui" rows="3"
+        v-model="text"></textarea>
+      <button class="btn-primary" type="submit" :disabled="sending">{{ sending ? "Enviando..." : "Enviar comentário"
+        }}</button>
     </form>
-</div>
+  </div>
 
 </template>
 
 <style scoped>
-
-#comment-field {
-    padding: 5px;
-    border-radius: 5px;
-    resize: none;
-    width: 100% ;
+#comment-label {
+  font-weight: 500;
 }
 
+#comment-field {
+  padding: 8px 10px;
+  border-radius: 5px;
+  resize: none;
+  width: 100%;
+  margin-bottom: 8px;
+  border: 1px solid var(--color-gray-border);
+  color: var(--color-gray-text);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-weight: 500;
+}
 </style>
