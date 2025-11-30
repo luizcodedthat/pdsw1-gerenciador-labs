@@ -1,9 +1,10 @@
 <script setup>
 
 import { ref, onMounted } from 'vue'
-import { AlarmClock, Building, Computer, Signal, StickyNote } from 'lucide-vue-next'
+import { AlarmClock, Building, Computer, PlusCircle, Signal, StickyNote } from 'lucide-vue-next'
 import { useCurrentReservation } from '@/composables/useCurrentReservation'
 import Navbar from '@/components/Navbar.vue'
+import TicketCardList from '@/components/lab/TicketCardList.vue'
 
 const props = defineProps({ id: String })
 
@@ -102,14 +103,25 @@ onMounted(async () => {
                                     <alarm-clock size="16" color="#64748B" />
                                     <h3 class="next-card-text-top">{{ slot.slotRange }}</h3>
                                 </div>
-                                <h3>{{ slot.approved ? "Aprovada" : "Em análise" }}</h3>
+                                <h3 class="ticket-status">{{ slot.approved ? "Aprovada" : "Em análise" }}</h3>
                             </div>
                             <h2 class="next-card-title">{{ slot.authorName }}
                             </h2>
                             <h3 class="next-card-text-bottom"> {{ slot.description }}</h3>
                         </div>
 
-
+                        <div class="next-reservation-card" v-if="nextReservationsList.length == 0">
+                            <div class="top">
+                                <div class="reservation-range">
+                                    <alarm-clock size="16" color="#64748B" />
+                                    <h3 class="next-card-text-top">Restante do dia</h3>
+                                </div>
+                                <h3 class="ticket-status">Disponível</h3>
+                            </div>
+                            <h2 class="next-card-title">Vago
+                            </h2>
+                            <h3 class="next-card-text-bottom">Aguardando reserva...</h3>
+                        </div>
 
                     </div>
                     <button class="btn-primary">Reservar esse laboratório</button>
@@ -140,8 +152,17 @@ onMounted(async () => {
         </section>
 
         <section id="last-tickets">
-            <div class="header"></div>
-            <div class="card-list"></div>
+            <div class="header">
+                <div class="header-text">
+                    <h2 class="section-title">Chamados</h2>
+                    <h3 class="section-subtitle">Últimos chamados do laboratório</h3>
+                </div>
+                <PlusCircle size="24" />
+            </div>
+
+            <div class="card-list">
+                <TicketCardList />
+            </div>
         </section>
 
         <section id="comments">
@@ -160,6 +181,11 @@ onMounted(async () => {
     margin: 2.5rem auto;
     box-sizing: content-box;
     padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 10px;
+    padding: 10px 0;
 }
 
 .lab-title {
@@ -200,7 +226,8 @@ onMounted(async () => {
     width: fit-content;
 }
 
-.card-text-top {
+.card-text-top,
+.ticket-status {
     font-size: var(--font-size-sm);
     font-weight: 400;
 }
@@ -223,7 +250,7 @@ onMounted(async () => {
     border-radius: 6px;
     border: 1px solid var(--color-gray-border);
     width: fit-content;
-    min-width: 230px;
+    min-width: 250px;
 }
 
 .next-reservation-card .top {
@@ -238,24 +265,19 @@ onMounted(async () => {
 }
 
 .reservation-range h3 {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: 400;
     color: var(--color-gray-text);
-}
-
-.next-reservation-card .top h3 {
-    font-size: var(--font-size-xs);
-    font-weight: 400;
 }
 
 .next-card-title {
     font-size: var(--font-size-base);
     font-weight: 500;
-    margin: 5px 0 3px;
+    margin: 10px 0 4px;
 }
 
 .next-card-text-bottom {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     font-weight: 400;
     color: var(--color-gray-text);
 }
@@ -286,5 +308,22 @@ onMounted(async () => {
 
 .btn-primary {
     padding: 10px 16px;
+}
+
+.header {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px 0 0;
+}
+
+.section-title {
+    margin-bottom: 6px;
+}
+
+.section-subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    color: hsl(215, 19%, 35%);
 }
 </style>
