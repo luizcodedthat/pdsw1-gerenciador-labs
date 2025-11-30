@@ -8,4 +8,8 @@ const app = createApp(App)
 
 app.use(router)
 
+import { useAuthStore } from "@/stores/useAuthStore";
+const auth = useAuthStore();
+auth.init();
+
 app.mount('#app')
