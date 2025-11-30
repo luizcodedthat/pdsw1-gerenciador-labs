@@ -6,7 +6,7 @@ export class Comment {
         this.authorId = data.authorId,
         this.authorName = data.authorName,
         this.content = data.content,
-        this.upvotes = data.upvotes
+        this.upvotes = data.upvotes || []
         /*
             upvotes = [
                 { authorId: 1, upvoteDate: 2025-11-30 },
@@ -33,7 +33,6 @@ export class Comment {
 
     toJSON() {
         return {
-            id: this.id,
             labId: this.labId,
             authorId: this.authorId,
             authorName: this.authorName,
