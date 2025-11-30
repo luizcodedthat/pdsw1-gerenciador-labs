@@ -1,16 +1,10 @@
 <script setup>
 
-import { computed, toRef } from 'vue';
 import { AlarmClock } from 'lucide-vue-next';
-import { useAvailability } from '@/composables/useAvailability';
 
-const props = defineProps({
-  labID: {
+defineProps({
+  labId: {
     type: String,
-    required: true
-  },
-  timeSlots: {
-    type: Array,
     required: true
   },
   name: {
@@ -23,11 +17,6 @@ const props = defineProps({
   }
 })
 
-const timeSlots = toRef(props, "timeSlots")
-
-const { calculateAvailability } = useAvailability(timeSlots);
-
-const availability = computed(() => calculateAvailability());
 
 </script>
 
@@ -37,12 +26,9 @@ const availability = computed(() => calculateAvailability());
     <div class="card-top">
       <alarm-clock size="16" />
       <p class="availability-text">
-        {{ availability.status }}
-        <span v-if="availability.until">
-          até às {{ new Date(availability.until).toLocaleTimeString([], {
-            hour: '2-digit', minute: '2-digit',
-            hour12: false
-          }) }}
+        Disponível
+        <span v-if="false">
+          até às 22:40
         </span>
       </p>
     </div>
@@ -53,7 +39,7 @@ const availability = computed(() => calculateAvailability());
       <p class="capacity-text">Comporta {{ capacity }} alunos.</p>
     </div>
 
-    <RouterLink class="link-lab" :to="`/laboratorios/${labID}`"> Ir para reserva </RouterLink>
+    <RouterLink class="link-lab" :to="`/laboratorios/${labId}`"> Ir para reserva </RouterLink>
 
   </div>
 
