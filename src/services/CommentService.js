@@ -1,7 +1,7 @@
 import DAOService from "@/services/DAOService";
 import { Comment } from "@/models/CommentModel";
 
-export class CommentService {
+class CommentService {
   constructor() {
     this.dao = new DAOService("comments");
   }
@@ -35,3 +35,5 @@ export class CommentService {
     await this.dao.delete(id);
   }
 }
+
+export default new CommentService();
