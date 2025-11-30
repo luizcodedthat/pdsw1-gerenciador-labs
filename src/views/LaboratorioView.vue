@@ -6,6 +6,7 @@ import { useCurrentReservation } from '@/composables/useCurrentReservation'
 import Navbar from '@/components/Navbar.vue'
 import CommentsList from '@/components/lab/CommentsList.vue'
 import CommentForm from '@/components/lab/CommentForm.vue'
+import ReservationModal from '@/components/lab/ReservationModal.vue'
 
 const props = defineProps({ id: String })
 
@@ -13,6 +14,7 @@ const data = ref({})
 const reservationsData = ref({})
 const nextReservationsList = ref([])
 const { currentReservation, getCurrentReservation } = useCurrentReservation(data)
+const showModal = ref(false)
 
 onMounted(async () => {
     const response = await fetch(`http://localhost:3000/listaLabs?id=${props.id}`)
@@ -114,7 +116,8 @@ onMounted(async () => {
 
 
                     </div>
-                    <button class="btn-primary">Reservar esse laboratório</button>
+                    <button @click="showModal = true" class="btn-primary">Reservar esse laboratório</button>
+                    <ReservationModal :show="showModal" :lab="lab"/>
                 </div>
                 <div class="info-cards">
                     <div class="info-card">
