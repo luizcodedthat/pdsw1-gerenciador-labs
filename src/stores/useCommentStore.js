@@ -5,6 +5,7 @@ export const useCommentStore = defineStore("comments", {
     state: () => ({
         commentsByLab: {},    // { labId: [] }
         lastFetched: {},      // { labId: timestamp }
+
         loading: false,
     }),
 
@@ -17,25 +18,28 @@ export const useCommentStore = defineStore("comments", {
                 this.lastFetched[labId] &&
                 now - this.lastFetched[labId] < FIVE_MIN
             ) {
-                return; // usa cache
+                return;
             }
 
             this.loading = true;
-            const comments = await CommentService.getByLab(labId);
+            const commentService = new CommentService()
+            const comments = await commentService.getByLab(labId);
 
             this.commentsByLab[labId] = comments;
             this.lastFetched[labId] = now;
             this.loading = false;
         },
 
-        async addComment(labId, comment) {
-            const created = await CommentService.create(comment);
+        async addComment(comment) {
+            const commentService = new CommentService()
+            const created = await commentService.create(comment);
 
-            if (!this.commentsByLab[labId]) {
-                this.commentsByLab[labId] = [];
+            if (!this.commentsByLab[comment.labId
+            ]) {
+                this.commentsByLab[comment.labId] = [];
             }
 
-            this.commentsByLab[labId].push(created);
+            this.commentsByLab[comment.labId].push(created);
         }
     }
 });
