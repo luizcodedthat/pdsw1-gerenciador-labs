@@ -12,8 +12,8 @@ const auth = useAuthStore();
 
 const labId = route.params.id;
 
-onMounted(() => {
-    commentStore.loadComments(labId);
+onMounted(async () => {
+    await commentStore.loadComments(labId);
 });
 
 const text = ref("");
@@ -26,14 +26,14 @@ async function submitComment() {
 
   const commentModel = new Comment({
     labId,
-    text: text.value,
+    content: text.value,
     authorId: auth.user.id,
     authorName: auth.user.name,
     createdAt: new Date(),
   });
 
   try {
-    await commentStore.addComment(labId, commentModel);
+    await commentStore.addComment(commentModel);
     text.value = "";
   } catch (err) {
     console.error("Erro ao criar comentário:", err);
@@ -50,7 +50,6 @@ async function submitComment() {
     <form @submit.prevent="submitComment">
         <label for="comment-field">Deixe seu comentário</label>
         <textarea name="comment-field" id="comment-field" placeholder="Digite sua mensagem aqui" rows="3" v-model="text"></textarea>
-        <p>{{ comment.content }}</p>
         <button class="btn-primary" type="submit" :disabled="sending">{{ sending ? "Enviando..." : "Enviar comentário" }}</button>
     </form>
 </div>
