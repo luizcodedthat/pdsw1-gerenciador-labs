@@ -39,7 +39,7 @@ export function useAvailability(timeSlots) {
 
         if (!currentTimeSlot.reserved) {
             const nextReservedSlot = occupiedReservations.find((slot) => slot.startTime > currentTimeSlot.endTime)
-            return { status: 'Livre', until: nextReservedSlot.startTime }
+            return { status: 'Livre', until: nextReservedSlot?.startTime || null  }
         }
 
         const nextAvailableSlot = vacantReservations.find((slot) => slot.startTime > currentTimeSlot.endTime)
