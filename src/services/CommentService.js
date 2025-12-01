@@ -7,9 +7,6 @@ class CommentService {
   }
 
   async create(comment) {
-    if (!(comment instanceof Comment)) {
-      throw new Error("CommentService.create espera uma instância de Comment");
-    }
 
     if (!comment.isValid()) throw new Error("Objeto Comment inválido");
 
