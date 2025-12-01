@@ -18,12 +18,26 @@ export class Reservation {
     if (!this.authorId) return false;
     if (!this.date) return false;
 
-    if (!Array.isArray(this.intervals) || this.intervals.length < 1 || this.intervals.length >  16) {
+    if (!Array.isArray(this.intervals) || this.intervals.length < 1 || this.intervals.length > 16) {
       return false;
     }
 
     return true;
   }
+
+  toJSON() {
+    return {
+      labId: this.labId,
+      authorId: this.authorId,
+      authorName: this.authorName,
+      approved: this.approved,
+      intervals: this.intervals,
+      date: this.date,
+      description: this.description,
+      createdAt: this.createdAt
+    };
+  }
+
 
   matchesSearch(searchTerm) {
     if (!searchTerm) return true;

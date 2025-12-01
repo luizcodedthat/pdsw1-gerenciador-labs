@@ -3,7 +3,7 @@
 import { ArrowBigUp } from 'lucide-vue-next';
 import { defineProps } from 'vue';
 
-const props = defineProps({
+defineProps({
     profilePicture: {
         default: '',
         type: String
@@ -12,8 +12,6 @@ const props = defineProps({
     commentText: String,
     upvoteCount: Number
 })
-
-console.log(props.profilePicture)
 
 </script>
 

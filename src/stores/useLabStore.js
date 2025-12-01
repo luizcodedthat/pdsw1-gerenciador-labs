@@ -6,7 +6,7 @@ export const useLabStore = defineStore("labs", {
         labs: [],
         labById: {},
         lastFetchedAll: null,
-        lastFetchedById: null,
+        lastFetchedById: {},
         loading: false
     }),
 
@@ -47,7 +47,7 @@ export const useLabStore = defineStore("labs", {
 
             this.loading = true;
 
-            const lab = await LabService.get(labId);
+            const lab = await LabService.getLabById(labId);
 
             this.labById[labId] = lab;
             this.lastFetchedById[labId] = now;

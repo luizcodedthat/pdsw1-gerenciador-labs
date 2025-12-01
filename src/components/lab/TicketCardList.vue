@@ -9,7 +9,6 @@ const noTicketsAvailable = true;
 <template>
 
     <div class="cards-list">
-        <!-- Remover atributos de teste depois -->
         <TicketCard v-for="_ in []" :key="_" title="Teste" message="Testado com sucesso." status="in progress"
             :createdDate="new Date().toLocaleDateString('pt-br')" />
 

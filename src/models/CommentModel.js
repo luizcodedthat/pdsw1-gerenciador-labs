@@ -7,6 +7,7 @@ export class Comment {
         this.authorName = data.authorName,
         this.content = data.content,
         this.upvotes = data.upvotes || []
+        this.createdAt = data.createdAt || new Date()
         /*
             upvotes = [
                 { authorId: 1, upvoteDate: 2025-11-30 },
@@ -18,7 +19,7 @@ export class Comment {
     }
 
     isValid() {
-        if (!this.labId) return false
+        if (!this.labId) return false;
         if (!this.authorId) return false;
         if (!this.content.trim()) return false;
         
