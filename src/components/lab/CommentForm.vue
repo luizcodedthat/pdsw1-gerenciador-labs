@@ -21,16 +21,17 @@ async function submitComment() {
   sending.value = true;
 
   const commentModel = new Comment({
-    labId,
+    labId: labId,
+    authorId: auth.user.uid,
+    authorName: auth.user.displayName,
     content: text.value,
-    authorId: auth.user.id,
-    authorName: auth.user.name,
     createdAt: new Date(),
   });
 
   try {
     await commentStore.addComment(commentModel);
     text.value = "";
+
   } catch (err) {
     console.error("Erro ao criar comentário:", err);
   }

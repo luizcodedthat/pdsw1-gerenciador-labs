@@ -24,7 +24,7 @@ onMounted(async () => {
             const user = await userStore.loadUser(c.authorId);
             return {
                 ...c,
-                profilePicture: user.profilePictureUrl || null
+                profilePicture: user.picture || null
             }
         })
     );
@@ -33,7 +33,7 @@ onMounted(async () => {
 
 <template>
     <div class="cards-list">
-        <CommentCard v-for="comment in labComments" :key="comment.id" :authorName="comment.authorName"
+        <CommentCard v-for="comment in labComments.sort((a, b) => a.upvotes.length - b.upvotes.lenght)" :key="comment.id" :authorName="comment.authorName"
             :profilePicture="comment.profilePicture" :commentText="comment.content"
             :upvoteCount="comment.upvotes.length" />
     </div>
