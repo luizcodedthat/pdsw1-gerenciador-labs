@@ -157,7 +157,7 @@ onMounted(async () => {
         </section>
 
         <section id="last-tickets">
-            <div class="header">
+            <div class="header right-icon">
                 <div class="header-text">
                     <h2 class="section-title">Chamados</h2>
                     <h3 class="section-subtitle">Últimos chamados do laboratório</h3>
@@ -324,6 +324,10 @@ section {
     flex-direction: column;
     justify-content: space-between;
     padding: 0 40px 0 0;
+}
+
+.right-icon {
+    flex-direction: row;
 }
 
 .section-title {
