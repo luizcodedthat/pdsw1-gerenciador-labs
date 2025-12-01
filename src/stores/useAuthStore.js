@@ -9,18 +9,8 @@ export const useAuthStore = defineStore("auth", {
 
   actions: {
     init() {
-      onUserChanged(firebaseUser => {
-        if (firebaseUser) {
-          this.user = {
-            id: firebaseUser.uid,
-            picture: firebaseUser.picture,
-            name: firebaseUser.displayName || "Indefinido",
-            email: firebaseUser.email
-          };
-        } else {
-          this.user = null;
-        }
-
+      onUserChanged(user => {
+        this.user = user;
         this.loading = false;
       });
     },
