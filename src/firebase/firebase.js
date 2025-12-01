@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -13,17 +13,32 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+
 export const db = getFirestore(app);
 
+
 export const auth = getAuth(app);
+
+export const googleProvider = new GoogleAuthProvider();
+
 
 export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
+export function createUser(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
+
+export function loginWithGoogle() {
+  return signInWithPopup(auth, googleProvider);
+}
+
+
 export function logout() {
   return signOut(auth);
 }
+
 
 export function onUserChanged(callback) {
   return onAuthStateChanged(auth, callback);

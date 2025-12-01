@@ -1,22 +1,37 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/useAuthStore'
 import AppLogo from './AppLogo.vue'
 import Avatar from '@/assets/images/Avatar.svg'
 
 defineOptions({
-  name: 'AppNavbar'
+  name: "AppNavbar"
 })
 
 const showModal = ref(false)
 const router = useRouter()
 
+const authStore = useAuthStore()
+
+const userName = computed(() => {
+  const fullName = authStore.user?.displayName || "Usuário"
+
+  const parts = fullName.trim().split(" ")
+
+  // se só tem 1 nome, retorna ele
+  if (parts.length === 1) return parts[0]
+
+  // retorna Nome + Sobrenome
+  return parts[0] + " " + parts[1]
+})
+
 const toggleModal = () => {
   showModal.value = !showModal.value
 }
 
-const logout = () => {
-  showModal.value = false
+const logout = async () => {
+  await authStore.doLogout()
   router.push('/login')
 }
 </script>
@@ -32,9 +47,8 @@ const logout = () => {
       </ul>
 
       <div class="nav-user">
-        <button @click="toggleModal">Olá, Luiz!</button>
+        <button @click="toggleModal">Olá, {{ userName }}</button>
         <img :src="Avatar" alt="Avatar" width="40" />
-
 
         <div v-if="showModal" class="dropdown-menu">
           <p class="logout" @click="logout">Sair</p>
@@ -43,6 +57,7 @@ const logout = () => {
     </div>
   </nav>
 </template>
+
 
 <style scoped>
 .navbar {
