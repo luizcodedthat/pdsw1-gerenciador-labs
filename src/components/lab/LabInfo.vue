@@ -13,9 +13,6 @@ const reservationStore = useReservationStore()
 const lab = ref(null)
 const showModal = ref(false)
 
-/* -------------------------------------------------------------
-   1. SLOTS FIXOS (oficiais do sistema)
-------------------------------------------------------------- */
 const slots = [
   { index: 0, startTime: "07:45", endTime: "08:30" },
   { index: 1, startTime: "08:30", endTime: "09:15" },
@@ -35,9 +32,6 @@ const slots = [
   { index: 15, startTime: "21:15", endTime: "22:00" }
 ]
 
-/* -------------------------------------------------------------
-   2. Utilidades de horário
-------------------------------------------------------------- */
 function timeToNumber(timeStr) {
   const [h, m] = timeStr.split(':').map(Number)
   return h + m / 60
@@ -63,17 +57,11 @@ function getEndSlot(reservation) {
   return last ? slotToEndHour(last.endSlot) : -Infinity
 }
 
-/* -------------------------------------------------------------
-   3. Reservas do laboratório
-------------------------------------------------------------- */
 const labReservations = computed(() => {
   if (!lab.value) return []
   return reservationStore.reservationsByLab(lab.value.id)
 })
 
-/* -------------------------------------------------------------
-   4. Reserva atual
-------------------------------------------------------------- */
 const currentReservation = computed(() => {
   const now = new Date()
   const nowNum = now.getHours() + now.getMinutes() / 60
@@ -86,9 +74,6 @@ const currentReservation = computed(() => {
   )
 })
 
-/* -------------------------------------------------------------
-   5. Próximas reservas
-------------------------------------------------------------- */
 const nextReservationsList = computed(() => {
   const now = new Date()
   const nowNum = now.getHours() + now.getMinutes() / 60
@@ -98,9 +83,6 @@ const nextReservationsList = computed(() => {
     .filter(res => getStartSlot(res) > nowNum)
 })
 
-/* -------------------------------------------------------------
-   6. Fluxo inicial
-------------------------------------------------------------- */
 onMounted(async () => {
   lab.value = await labStore.loadLabById(props.id)
 
@@ -120,9 +102,6 @@ onMounted(async () => {
 
       <div class="lab-reservation">
         
-        <!-- ------------------------------------ -->
-        <!--  RESERVA ATUAL                       -->
-        <!-- ------------------------------------ -->
         <div class="current-reservation-section">
 
           <div class="current-reservation-card">
@@ -140,7 +119,6 @@ onMounted(async () => {
 
           <h4 class="next-reservations-section-text">Próximas reservas</h4>
 
-          <!-- Reserva atual detalhada -->
           <div class="current-reservation-card" v-if="currentReservation">
             <h3 class="card-text-top">Reservado até o</h3>
 
@@ -154,9 +132,6 @@ onMounted(async () => {
           </div>
         </div>
 
-        <!-- ------------------------------------ -->
-        <!--  PRÓXIMAS RESERVAS                    -->
-        <!-- ------------------------------------ -->
         <div class="next-reservation-section">
 
           <div class="next-reservation-card"
@@ -184,7 +159,6 @@ onMounted(async () => {
             <h3 class="next-card-text-bottom">{{ reserv.description }}</h3>
           </div>
 
-          <!-- Caso sem reservas -->
           <div class="next-reservation-card" v-if="nextReservationsList.length === 0">
             <div class="top">
               <div class="reservation-range">
@@ -207,9 +181,6 @@ onMounted(async () => {
         <ReservationModal :show="showModal" :labInfo="lab" />
       </div>
 
-      <!-- ------------------------------------ -->
-      <!--  INFO ADICIONAL DO LAB               -->
-      <!-- ------------------------------------ -->
       <div class="info-cards">
         
         <div class="info-card">

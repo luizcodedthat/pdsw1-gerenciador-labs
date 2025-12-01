@@ -6,7 +6,7 @@ import { DatePicker } from 'v-calendar'
 import 'v-calendar/style.css'
 
 import { useReservationStore } from '@/stores/useReservationStore'
-import { useAuthStore } from '@/stores/useAuthStore' // necessário
+import { useAuthStore } from '@/stores/useAuthStore'
 const reservationStore = useReservationStore()
 const authStore = useAuthStore()
 
@@ -83,7 +83,6 @@ const filteredEndTimes = computed(() => {
   return slots.filter(slot => {
     if (slot.index < startIndex) return false
 
-    // Se qualquer slot entre start e end estiver ocupado → remove
     for (let i = startIndex; i <= slot.index; i++) {
       if (busySlots.value.has(i)) return false
     }
@@ -133,7 +132,6 @@ async function confirmReservation() {
   try {
     await reservationStore.addReservation(reservationData)
 
-    // Reset
     startTime.value = ""
     endTime.value = ""
     message.value = ""

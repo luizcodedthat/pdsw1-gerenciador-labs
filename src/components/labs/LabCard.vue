@@ -11,9 +11,6 @@ const props = defineProps({
 
 const reservationStore = useReservationStore()
 
-// ----------------------------------------
-// SLOTS FIXOS IGUAIS AO LabInfo.vue
-// ----------------------------------------
 const slots = [
   { index: 0, startTime: "07:45", endTime: "08:30" },
   { index: 1, startTime: "08:30", endTime: "09:15" },
@@ -33,7 +30,6 @@ const slots = [
   { index: 15, startTime: "21:15", endTime: "22:00" },
 ]
 
-// Helpers de tempo
 function timeToNumber(timeStr) {
   const [h, m] = timeStr.split(":").map(Number)
   return h + m / 60
@@ -47,9 +43,6 @@ function slotEnd(slotIndex) {
   return timeToNumber(slots[slotIndex].endTime)
 }
 
-// ----------------------------------------
-// Carrega reservas
-// ----------------------------------------
 onMounted(() => {
   reservationStore.loadReservationsByLab(props.labId)
 })
@@ -58,9 +51,6 @@ const labReservations = computed(() =>
   reservationStore.reservationsByLab(props.labId)
 )
 
-// ----------------------------------------
-// Reserva atual
-// ----------------------------------------
 const currentReservation = computed(() => {
   const now = new Date()
   const nowNum = now.getHours() + now.getMinutes() / 60
@@ -79,9 +69,6 @@ const currentReservation = computed(() => {
     .find(r => r.start <= nowNum && nowNum <= r.end)?.res || null
 })
 
-// ----------------------------------------
-// Próxima reserva futura (se está livre)
-// ----------------------------------------
 const nextReservation = computed(() => {
   const now = new Date()
   const nowNum = now.getHours() + now.getMinutes() / 60
@@ -95,9 +82,6 @@ const nextReservation = computed(() => {
     .sort((a, b) => a.start - b.start)[0]?.res || null
 })
 
-// ----------------------------------------
-// Texto final de disponibilidade
-// ----------------------------------------
 const availabilityText = computed(() => {
   if (currentReservation.value) {
     const last = currentReservation.value.intervals.at(-1)
