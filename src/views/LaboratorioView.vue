@@ -9,6 +9,12 @@ import TicketCardList from '@/components/lab/TicketCardList.vue'
 import { useLabStore } from '@/stores/useLabStore'
 import LabInfo from '@/components/lab/LabInfo.vue'
 
+
+import CreateModal from '@/components/chamados/CreateModal.vue'
+
+
+const modalAberto = ref(false)
+
 const props = defineProps({ id: String })
 
 const labStore = useLabStore()
@@ -17,16 +23,18 @@ onMounted(async () => {
     labStore.loadLabById(props.id)
 })
 
+function criarChamado(data) {
+  console.log("Chamado criado:", data)
+}
 </script>
 
 <template>
     <Navbar />
     <div class="loading" v-if="labStore.loading">Aguarde...</div>
     <div class="wrapper" v-if="!labStore.loading">
+
         <section id="lab-info">
-
             <LabInfo :id="id" />
-
         </section>
 
         <section id="last-tickets">
@@ -35,7 +43,13 @@ onMounted(async () => {
                     <h2 class="section-title">Chamados</h2>
                     <h3 class="section-subtitle">Últimos chamados do laboratório</h3>
                 </div>
-                <PlusCircle size="24" />
+
+                <!-- ÍCONE ABRE O MODAL -->
+                <PlusCircle
+                    size="24"
+                    @click="modalAberto = true"
+                    style="cursor:pointer;"
+                />
             </div>
 
             <div class="card-list">
@@ -51,6 +65,13 @@ onMounted(async () => {
             <CommentsList />
             <CommentForm />
         </section>
+
+        <!-- MODAL CHAMADO -->
+        <CreateModal
+            v-model="modalAberto"
+            @save="criarChamado"
+            :labId="id"
+        />
 
     </div>
 
