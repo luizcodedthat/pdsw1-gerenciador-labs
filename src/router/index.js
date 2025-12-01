@@ -4,6 +4,7 @@ import LaboratorioView from '@/views/LaboratorioView.vue'
 import LaboratoriosView from '@/views/LaboratoriosView.vue'
 import LoginView from '@/views/LoginView.vue'
 import ChamadoView from '@/views/ChamadoView.vue'
+import CadastroView from '@/views/CadastroView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +21,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/cadastro'
     },
     {
       path: '/chamados',
@@ -32,6 +33,11 @@ const router = createRouter({
       name: 'Laboratorio',
       component: LaboratorioView,
       props: true
+    },
+    {
+      path: '/cadastro',
+      name: 'Cadastro',
+      component: CadastroView
     }
   ]
 })

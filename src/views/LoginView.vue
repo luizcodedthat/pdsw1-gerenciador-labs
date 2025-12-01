@@ -1,25 +1,89 @@
 <script setup>
-
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { login, loginWithGoogle } from "@/firebase/firebase";
+import { useAuthStore } from "@/stores/useAuthStore";
+
 const router = useRouter();
+const authStore = useAuthStore();
 
 const email = ref("");
 const password = ref("");
 
-function handleLogin() {
-  // Simulação de autenticação bem-sucedida
-  if (email.value && password.value) {
-    // Redirecionar para a página de laboratórios após o login
+// Estado do aviso
+const showAlert = ref(false);
+const alertMessage = ref("");
+
+// Função para mostrar aviso
+function notify(msg) {
+  alertMessage.value = msg;
+  showAlert.value = true;
+
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 3500); // some depois de 3.5s
+}
+
+// Login com email e senha
+async function handleLogin() {
+  const value = email.value;
+
+  // Verificar domínio
+  if (
+    !value.endsWith("@discente.ifpe.edu.br") &&
+    !value.endsWith("@palmares.ifpe.edu.br")
+  ) {
+    notify("Use um email institucional (@discente.ifpe.edu.br ou @palmares.ifpe.edu.br)");
+    return;
+  }
+
+  try {
+    const userCredential = await login(email.value, password.value);
+    authStore.user = userCredential.user;
     router.push({ name: "Laboratorios" });
-  } else {
-    alert("Por favor, insira email e senha válidos.");
+  } catch (error) {
+    console.error(error);
+
+    if (error.code === "auth/invalid-credential") {
+      notify("Email ou senha inválidos.");
+    } else {
+      notify("Erro ao fazer login: " + error.message);
+    }
   }
 }
 
+// Login Google
+async function handleLoginGoogle() {
+  try {
+    const result = await loginWithGoogle();
+    const userEmail = result.user.email;
+
+    if (
+      !userEmail.endsWith("@discente.ifpe.edu.br") &&
+      !userEmail.endsWith("@palmares.ifpe.edu.br")
+    ) {
+      notify("Somente emails institucionais podem acessar.");
+      return;
+    }
+
+    authStore.user = result.user;
+    router.push({ name: "Laboratorios" });
+  } catch (err) {
+    console.error(err);
+    notify("Erro ao entrar com Google: " + err.code);
+  }
+}
 </script>
 
+
 <template>
+  <!-- 🔔 Caixa de Aviso -->
+  <transition name="fade">
+    <div v-if="showAlert" class="alert-box">
+      {{ alertMessage }}
+    </div>
+  </transition>
+
   <div class="login-container">
     <!-- Coluna Esquerda -->
     <div class="login-left">
@@ -46,6 +110,7 @@ function handleLogin() {
               required
             />
           </div>
+
           <div class="input-wrapper">
             <input
               type="password"
@@ -61,7 +126,7 @@ function handleLogin() {
 
         <div class="divider">ou entre com</div>
 
-        <button class="btn-secondary">
+        <button class="btn-secondary" @click="handleLoginGoogle">
           <img
             src="https://www.svgrepo.com/show/355037/google.svg"
             alt="Google"
@@ -73,6 +138,7 @@ function handleLogin() {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 /* Layout geral */
@@ -207,5 +273,27 @@ function handleLogin() {
 .icon {
   width: 20px;
   height: 20px;
+}
+/* ALERTA BONITO */
+.alert-box {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ef4444;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+/* animação fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -4,14 +4,14 @@ import router from './router'
 import pinia from '@/stores'
 import './assets/styles/main.css'
 import './assets/styles/ui.css'
+import './composables/useValidators.js'
+import { useAuthStore } from './stores/useAuthStore'
 
 const app = createApp(App)
-
 app.use(router)
 app.use(pinia)
 
-import { useAuthStore } from "@/stores/useAuthStore";
-const auth = useAuthStore();
-auth.init();
+const auth = useAuthStore()
+auth.init()
 
 app.mount('#app')

@@ -1,12 +1,13 @@
 <script setup>
 
 import { ref, onMounted } from 'vue'
-import { AlarmClock, Building, Computer, Signal, StickyNote } from 'lucide-vue-next'
+import { AlarmClock, Building, Computer, PlusCircle, Signal, StickyNote } from 'lucide-vue-next'
 import { useCurrentReservation } from '@/composables/useCurrentReservation'
 import Navbar from '@/components/Navbar.vue'
 import CommentsList from '@/components/lab/CommentsList.vue'
 import CommentForm from '@/components/lab/CommentForm.vue'
 import ReservationModal from '@/components/lab/ReservationModal.vue'
+import TicketCardList from '@/components/lab/TicketCardList.vue'
 
 const props = defineProps({ id: String })
 
@@ -106,14 +107,25 @@ onMounted(async () => {
                                     <alarm-clock size="16" color="#64748B" />
                                     <h3 class="next-card-text-top">{{ slot.slotRange }}</h3>
                                 </div>
-                                <h3>{{ slot.approved ? "Aprovada" : "Em análise" }}</h3>
+                                <h3 class="ticket-status">{{ slot.approved ? "Aprovada" : "Em análise" }}</h3>
                             </div>
                             <h2 class="next-card-title">{{ slot.authorName }}
                             </h2>
                             <h3 class="next-card-text-bottom"> {{ slot.description }}</h3>
                         </div>
 
-
+                        <div class="next-reservation-card" v-if="nextReservationsList.length == 0">
+                            <div class="top">
+                                <div class="reservation-range">
+                                    <alarm-clock size="16" color="#64748B" />
+                                    <h3 class="next-card-text-top">Restante do dia</h3>
+                                </div>
+                                <h3 class="ticket-status">Disponível</h3>
+                            </div>
+                            <h2 class="next-card-title">Vago
+                            </h2>
+                            <h3 class="next-card-text-bottom">Aguardando reserva...</h3>
+                        </div>
 
                     </div>
                     <button @click="showModal = true" class="btn-primary">Reservar esse laboratório</button>
@@ -145,8 +157,17 @@ onMounted(async () => {
         </section>
 
         <section id="last-tickets">
-            <div class="header"></div>
-            <div class="card-list"></div>
+            <div class="header">
+                <div class="header-text">
+                    <h2 class="section-title">Chamados</h2>
+                    <h3 class="section-subtitle">Últimos chamados do laboratório</h3>
+                </div>
+                <PlusCircle size="24" />
+            </div>
+
+            <div class="card-list">
+                <TicketCardList />
+            </div>
         </section>
 
         <section id="comments">
