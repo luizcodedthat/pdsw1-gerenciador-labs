@@ -27,7 +27,6 @@ export class Reservation {
 
   toJSON() {
     return {
-      id: this.id,
       labId: this.labId,
       authorId: this.authorId,
       authorName: this.authorName,
