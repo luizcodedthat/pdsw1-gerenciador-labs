@@ -1,5 +1,5 @@
 import DAOService from './DAOService';
-import { Lab } from '../models/Lab';
+import { Lab } from '../models/LabModel';
 
 class LabService {
   constructor() {

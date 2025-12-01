@@ -4,13 +4,13 @@ import { ref, computed, onMounted } from 'vue';
 import LabCardList from '@/components/labs/LabCardList.vue';
 import SearchArea from '@/components/labs/SearchArea.vue';
 import Navbar from '@/components/Navbar.vue';
+import { useLabStore } from '@/stores/useLabStore';
 
-const mockData = ref([])
 const filter = ref('')
+const labStore = useLabStore()
 
 onMounted(async () => {
-  const response = await fetch('http://localhost:3000/listaLabs')
-  mockData.value = await response.json()
+  await labStore.loadLabs()
 })
 
 const onSearch = (value) => {
@@ -18,8 +18,8 @@ const onSearch = (value) => {
 }
 
 const filteredLabs = computed(() => {
-  return mockData.value?.filter(
-    (l) => l.name.toLowerCase().includes(filter.value.toLowerCase())
+  return labStore.labs?.filter(
+    (lab) => lab.matchesSearch(filter.value)
   ) || []
 })
 

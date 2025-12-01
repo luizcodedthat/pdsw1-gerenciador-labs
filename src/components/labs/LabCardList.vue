@@ -18,8 +18,7 @@ defineProps({
     <LabCard
         v-for="lab in labList"
         :key="lab.id"
-        :labID="lab.id"
-        :timeSlots="lab.timeSlots"
+        :labId="lab.id"
         :name="lab.name"
         :capacity="lab.capacity"
     />

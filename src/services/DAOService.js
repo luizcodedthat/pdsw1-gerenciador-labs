@@ -1,4 +1,4 @@
-import { firestore } from '../firebase';
+import { firestore } from '../firebase/firebase';
 import { collection, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, query, where } from 'firebase/firestore';
 
 class DAOService {

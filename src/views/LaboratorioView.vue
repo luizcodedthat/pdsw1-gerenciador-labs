@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue'
 import { AlarmClock, Building, Computer, PlusCircle, Signal, StickyNote } from 'lucide-vue-next'
 import { useCurrentReservation } from '@/composables/useCurrentReservation'
 import Navbar from '@/components/Navbar.vue'
+import CommentsList from '@/components/lab/CommentsList.vue'
+import CommentForm from '@/components/lab/CommentForm.vue'
 import ReservationModal from '@/components/lab/ReservationModal.vue'
 import TicketCardList from '@/components/lab/TicketCardList.vue'
 
@@ -169,9 +171,12 @@ onMounted(async () => {
         </section>
 
         <section id="comments">
-            <div class="header"></div>
-            <div class="comments-list"></div>
-            <div class="comment-form"></div>
+            <div class="header">
+                <h2 class="section-title">Comentários</h2>
+                <h3 class="section-subtitle">Comentários sobre o estado do laboratório.</h3>
+            </div>
+            <CommentsList />
+            <CommentForm />
         </section>
 
     </div>
@@ -316,6 +321,7 @@ section {
 .header {
     margin-bottom: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 0 40px 0 0;
 }
