@@ -1,6 +1,6 @@
 <script setup>
 
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { PlusCircle } from 'lucide-vue-next'
 import Navbar from '@/components/Navbar.vue'
 import CommentsList from '@/components/lab/CommentsList.vue'

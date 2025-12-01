@@ -92,7 +92,7 @@ onMounted(async () => {
 
 <template>
   <div class="lab-wrapper" v-if="lab">
-    
+
     <div class="heading">
       <h1 class="lab-title">{{ lab.name }}</h1>
       <h3 class="lab-category">{{ lab.category }}</h3>
@@ -101,7 +101,7 @@ onMounted(async () => {
     <div class="lab-cards">
 
       <div class="lab-reservation">
-        
+
         <div class="current-reservation-section">
 
           <div class="current-reservation-card">
@@ -117,8 +117,6 @@ onMounted(async () => {
             </h3>
           </div>
 
-          <h4 class="next-reservations-section-text">Próximas reservas</h4>
-
           <div class="current-reservation-card" v-if="currentReservation">
             <h3 class="card-text-top">Reservado até o</h3>
 
@@ -130,7 +128,9 @@ onMounted(async () => {
               {{ slots[currentReservation.intervals.at(-1).endSlot].endTime }}
             </h3>
           </div>
+
         </div>
+        <h4 class="next-reservations-section-text">Próximas reservas</h4>
 
         <div class="next-reservation-section">
 
@@ -182,7 +182,7 @@ onMounted(async () => {
       </div>
 
       <div class="info-cards">
-        
+
         <div class="info-card">
           <div class="top">Capacidade <computer size="16" /></div>
           <h2>{{ lab.capacity }} alunos</h2>
@@ -235,7 +235,10 @@ onMounted(async () => {
     flex-direction: row;
 }
 
-.next-reservation-card {
+.current-reservation-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 
 }
 
