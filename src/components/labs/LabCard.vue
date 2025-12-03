@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { onMounted, computed } from "vue"
 import { useReservationStore } from "@/stores/useReservationStore"
 import { AlarmClock } from "lucide-vue-next"
 
@@ -10,6 +10,8 @@ const props = defineProps({
 })
 
 const reservationStore = useReservationStore()
+
+const todayStr = new Date().toISOString().slice(0, 10);
 
 const slots = [
   { index: 0, startTime: "07:45", endTime: "08:30" },
@@ -48,7 +50,7 @@ onMounted(() => {
 })
 
 const labReservations = computed(() =>
-  reservationStore.reservationsByLab(props.labId)
+  reservationStore.reservationsByLab(props.labId).filter(r => r.date === todayStr)
 )
 
 const currentReservation = computed(() => {
