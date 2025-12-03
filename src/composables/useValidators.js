@@ -1,13 +1,12 @@
 import { defineRule, configure } from "vee-validate";
 import { required, email, confirmed, min } from "@vee-validate/rules";
 
-// DEFININDO REGRAS
+
 defineRule("required", required);
 defineRule("email", email);
 defineRule("confirmed", confirmed);
 defineRule("min", min);
 
-// MENSAGENS PERSONALIZADAS
 configure({
   generateMessage: ({ field, rule }) => {
     const name = {

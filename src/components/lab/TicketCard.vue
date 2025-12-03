@@ -3,7 +3,7 @@ import { Calendar } from 'lucide-vue-next';
 import { computed, defineProps } from 'vue';
 
 const props = defineProps({
-    createdDate: String,
+    createdDate: Number,
     status: {
         default: 'open',
         type: String
@@ -13,14 +13,14 @@ const props = defineProps({
 })
 
 const statusText = computed(() => {
-    switch (props.status) {
-        case 'open':
+    switch (props.status.toLowerCase()) {
+        case 'aberto':
             return 'Aberto';
-        case 'in progress':
+        case 'em andamento':
             return 'Em andamento';
-        case 'finished':
-            return 'Finalizado';
-        case 'closed':
+        case 'concluído':
+            return 'Concluído';
+        case 'fechado':
             return 'Fechado';
         default:
             return 'Status desconhecido';
@@ -29,12 +29,26 @@ const statusText = computed(() => {
 
 const statusClass = computed(() => {
     return {
-        'open-tag': props.status === 'open',
-        'in-progress-tag': props.status === 'in progress',
-        'finished-tag': props.status === 'finished',
-        'closed-tag': props.status === 'closed',
+        'open-tag': statusText.value === 'open',
+        'in-progress-tag': statusText.value === 'in progress',
+        'finished-tag': statusText.value === 'finished',
+        'closed-tag': statusText.value === 'closed',
     };
 });
+
+const createdAt = computed(() => {
+  if (!props.createdDate) return "";
+
+  const date = new Date(props.createdDate);
+
+  return date.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+});
+
+
 </script>
 
 <template>
@@ -43,7 +57,7 @@ const statusClass = computed(() => {
         <div class="card-top">
             <div class="created-date">
                 <Calendar size="16" color="#64748B" />
-                {{ createdDate }}
+                {{ createdAt }}
             </div>
             <div class="status-tag" :class="statusClass">
                 {{ statusText }}
@@ -62,6 +76,7 @@ const statusClass = computed(() => {
 .card {
     width: fit-content;
     min-width: 260px;
+    max-width: 350px;
     border-radius: 5px;
     padding: 20px;
 

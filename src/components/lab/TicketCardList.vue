@@ -1,22 +1,42 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import TicketCard from './TicketCard.vue';
 import { TvIcon } from 'lucide-vue-next';
+import { useTicketStore } from '@/stores/useTicketStore';
 
-const noTicketsAvailable = true;
+const props = defineProps({
+    labId: String
+})
+
+const ticketStore = useTicketStore()
+const tickets = ref([])
+
+onMounted(async () => {
+    await ticketStore.loadTicketsByLabId(props.labId)
+    tickets.value = ticketStore.ticketsByLab[props.labId].slice(0, 4)
+})
 
 </script>
 
 <template>
+    <div class="card-list">
 
-    <div class="cards-list">
-        <TicketCard v-for="_ in []" :key="_" title="Teste" message="Testado com sucesso." status="in progress"
-            :createdDate="new Date().toLocaleDateString('pt-br')" />
+        <div class="cards-list" v-if="!ticketStore.loading && tickets.length > 0">
+            <TicketCard v-for="ticket in tickets" :key="ticket.id" :title="ticket.titulo" :message="ticket.descricao"
+                :status="ticket.status" :createdDate="ticket.createdAt" />
 
-    </div>
+        </div>
 
-    <div class="no-tickets" v-if="noTicketsAvailable">
-        <TvIcon size="48" color="#64748B" />
-        <p>Tudo limpo! Nenhum chamado recente.</p>
+        <div class="no-tickets" v-else-if="!ticketStore.loading && tickets.length === 0">
+            <TvIcon size="48" color="#64748B" />
+            <p>Tudo limpo! Nenhum chamado recente.</p>
+        </div>
+
+        <div class="no-tickets" v-else>
+            <TvIcon size="48" color="#64748B" />
+            <p>Carregando...</p>
+        </div>
+
     </div>
 
 </template>

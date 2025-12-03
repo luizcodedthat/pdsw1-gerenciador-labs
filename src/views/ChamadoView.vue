@@ -5,13 +5,22 @@ import ChamadoCard from '@/components/chamados/ChamadoCard.vue'
 import ChamadoModal from '@/components/chamados/ChamadoModal.vue'
 import SearchArea from '@/components/labs/SearchArea.vue'
 
-const chamados = ref([])
+import { useTicketStore } from '@/stores/useTicketStore'
+
+const ticketStore = useTicketStore()
+
+onMounted(async () => {
+  await ticketStore.loadAllTickets()
+})
+
+// FILTROS DA TELA
 const filtros = ['Todos', 'Aberto', 'Em andamento', 'Concluído', 'Fechado']
 const filtroStatus = ref('Todos')
 const busca = ref('')
 
+// CHAMADOS FILTRADOS
 const chamadosFiltrados = computed(() => {
-  return chamados.value
+  return ticketStore.tickets
     .filter(c => filtroStatus.value === 'Todos' || c.status === filtroStatus.value)
     .filter(c =>
       c.titulo.toLowerCase().includes(busca.value.toLowerCase()) ||
@@ -19,6 +28,7 @@ const chamadosFiltrados = computed(() => {
     )
 })
 
+// MODAL
 const modalVisivel = ref(false)
 const chamadoSelecionado = ref(null)
 
@@ -29,33 +39,20 @@ const abrirModal = (chamado) => {
 
 const fecharModal = () => modalVisivel.value = false
 
-const carregarChamados = async () => {
-  const res = await fetch('http://localhost:3000/chamados')
-  chamados.value = await res.json()
-}
-
+// QUANDO SALVAR NO MODAL (EDITAR STATUS OU COMENTÁRIO)
 const salvarAlteracoes = async ({ id, status, comentario }) => {
-  const index = chamados.value.findIndex(c => c.id === id)
-  if (index !== -1) {
-    const chamado = chamados.value[index]
+  try {
+    await ticketStore.updateTicket(id, {
+      status,
+      comentario  // <-- ESTE É O CAMPO QUE EXISTE NO FIRESTORE
+    })
 
-    if (!chamado.comentarios) chamado.comentarios = []
-
-    const novoComentario = {
-      data: new Date().toLocaleString(),
-      texto: comentario
-    }
-    chamado.comentarios.push(novoComentario)
-
-    chamados.value[index].status = status
-    chamados.value[index].comentarios = chamado.comentarios
+  } catch (err) {
+    console.error("Erro ao atualizar chamado:", err)
   }
-
 
   fecharModal()
 }
-
-onMounted(carregarChamados)
 </script>
 
 <template>

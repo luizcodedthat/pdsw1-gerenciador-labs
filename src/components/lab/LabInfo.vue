@@ -32,6 +32,8 @@ const slots = [
   { index: 15, startTime: "21:15", endTime: "22:00" }
 ]
 
+const todayStr = new Date().toISOString().slice(0, 10);
+
 function timeToNumber(timeStr) {
   const [h, m] = timeStr.split(':').map(Number)
   return h + m / 60
@@ -59,7 +61,7 @@ function getEndSlot(reservation) {
 
 const labReservations = computed(() => {
   if (!lab.value) return []
-  return reservationStore.reservationsByLab(lab.value.id)
+  return reservationStore.reservationsByLab(lab.value.id).filter(r => r.date === todayStr)
 })
 
 const currentReservation = computed(() => {

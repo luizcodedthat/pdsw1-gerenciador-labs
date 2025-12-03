@@ -10,7 +10,7 @@ import { useLabStore } from '@/stores/useLabStore'
 import LabInfo from '@/components/lab/LabInfo.vue'
 
 
-import CreateModal from '@/components/chamados/CreateModal.vue'
+import TicketTicketCreateModal from '@/components/lab/TicketCreateModal.vue'
 
 
 const modalAberto = ref(false)
@@ -24,7 +24,7 @@ onMounted(async () => {
 })
 
 function criarChamado(data) {
-  console.log("Chamado criado:", data)
+    console.log("Chamado criado:", data)
 }
 </script>
 
@@ -45,16 +45,9 @@ function criarChamado(data) {
                 </div>
 
                 <!-- ÍCONE ABRE O MODAL -->
-                <PlusCircle
-                    size="24"
-                    @click="modalAberto = true"
-                    style="cursor:pointer;"
-                />
+                <PlusCircle size="24" @click="modalAberto = true" style="cursor:pointer;" />
             </div>
-
-            <div class="card-list">
-                <TicketCardList />
-            </div>
+            <TicketCardList :labId="id" />
         </section>
 
         <section id="comments">
@@ -67,7 +60,7 @@ function criarChamado(data) {
         </section>
 
         <!-- MODAL CHAMADO -->
-        <CreateModal
+        <TicketTicketCreateModal
             v-model="modalAberto"
             @save="criarChamado"
             :labId="id"
@@ -78,6 +71,13 @@ function criarChamado(data) {
 </template>
 
 <style scoped>
+.loading {
+    margin: 10% auto 0;
+    display: block;
+    width: fit-content;
+    font-size: var(--font-size-l);
+}
+
 .wrapper {
     max-width: 1200px;
     margin: 2.5rem auto;
