@@ -6,34 +6,36 @@ class ChamadoService {
     this.dao = new DAOService('chamados');
   }
 
-  async getAllChamados() {
+  async getAllTickets() {
     const docs = await this.dao.getAll();
     return docs.map(doc => new Chamado(doc));
   }
 
-  async getChamadosByLab(labId) {
-    const all = await this.getAllChamados();
-    return all.filter(c => c.labId === labId);
+  async getTicketsByLabId(labId) {
+    if (!labId) return [];
+
+    const docs = await this.dao.search("labId", labId);
+    return docs.map(doc => new Chamado(doc));
   }
 
-  async getChamadoById(id) {
+  async getTicketById(id) {
     const doc = await this.dao.get(id);
     return new Chamado(doc);
   }
 
-  async createChamado(data) {
+  async addTicket(data) {
     const chamado = new Chamado(data);
 
     if (!chamado.isValid()) {
-      throw new Error("Dados do chamado são inválidos");
+      throw new Error("Dados do ticket são inválidos");
     }
 
     const id = await this.dao.insert(chamado.toJSON());
     return { id, ...chamado };
   }
 
-  async updateChamado(id, updates) {
-    const existing = await this.getChamadoById(id);
+  async updateTicket(id, updates) {
+    const existing = await this.getTicketById(id);
     const updated = new Chamado({ ...existing, ...updates });
 
     if (!updated.isValid()) {
@@ -44,24 +46,24 @@ class ChamadoService {
     return updated;
   }
 
-  async deleteChamado(id) {
+  async deleteTicket(id) {
     await this.dao.delete(id);
     return true;
   }
 
-  async searchChamados(searchTerm) {
+  async searchTickets(searchTerm) {
     if (!searchTerm || !searchTerm.trim()) {
-      return this.getAllChamados();
+      return this.getAllTickets();
     }
 
-    const all = await this.getAllChamados();
+    const all = await this.getAllTickets();
     const term = searchTerm.toLowerCase();
 
     return all.filter(ch => ch.matchesSearch(term));
   }
 
-  async getOpenChamados() {
-    const all = await this.getAllChamados();
+  async getOpenTickets() {
+    const all = await this.getAllTickets();
     return all.filter(ch => ch.status === "aberto");
   }
 }
