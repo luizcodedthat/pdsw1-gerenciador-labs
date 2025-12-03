@@ -33,6 +33,7 @@ export const useTicketStore = defineStore("tickets", {
 
             const tickets = await ChamadoService.getAllTickets();
             this.tickets = tickets;
+            this.tickets.sort((a, b) => b.createdAt - a.createdAt)
 
             tickets.forEach(t => {
                 this.ticketById[t.id] = t;
@@ -102,6 +103,7 @@ export const useTicketStore = defineStore("tickets", {
             const newTicket = await ChamadoService.addTicket(ticketData);
 
             this.tickets.push(newTicket);
+            this.tickets.sort((a, b) => b.createdAt - a.createdAt)
             this.ticketById[newTicket.id] = newTicket;
 
             if (!this.ticketsByLab[newTicket.labId]) {
@@ -114,6 +116,39 @@ export const useTicketStore = defineStore("tickets", {
             return newTicket;
         },
 
+        async updateTicket(ticketId, updates) {
+            this.loading = true;
+
+            // Atualiza no Firebase via service
+            const updated = await ChamadoService.updateTicket(ticketId, updates);
+
+            // Atualiza no array principal
+            const index = this.tickets.findIndex(t => t.id === ticketId);
+            if (index !== -1) {
+                this.tickets[index] = updated;
+            }
+
+            // Atualiza no cache por ID
+            this.ticketById[ticketId] = updated;
+
+            // Atualiza no cache por laboratório
+            const labId = updated.labId;
+            if (labId && this.ticketsByLab[labId]) {
+                const labIndex = this.ticketsByLab[labId].findIndex(t => t.id === ticketId);
+                if (labIndex !== -1) {
+                    this.ticketsByLab[labId][labIndex] = updated;
+                }
+            }
+
+            // Reordena lista principal pela data de criação
+            this.tickets.sort((a, b) => b.createdAt - a.createdAt);
+
+            this.loading = false;
+
+            return updated;
+        },
+
+
         async deleteTicket(ticketId) {
             this.loading = true;
 
@@ -123,6 +158,7 @@ export const useTicketStore = defineStore("tickets", {
 
             const labId = this.ticketById[ticketId]?.labId;
             delete this.ticketById[ticketId];
+            this.tickets.sort((a, b) => b.createdAt - a.createdAt)
 
             if (labId && this.ticketsByLab[labId]) {
                 this.ticketsByLab[labId] =
