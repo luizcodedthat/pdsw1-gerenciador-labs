@@ -6,6 +6,7 @@ class DAOService {
     if (!collectionPath) {
       throw new Error('Collection path must be provided');
     }
+    this.collectionPath = collectionPath;
     this.collectionRef = collection(firestore, collectionPath);
   }
 
@@ -21,7 +22,7 @@ class DAOService {
 
   async update(id, object) {
     try {
-      const docRef = doc(firestore, this.collectionRef.path, id);
+      const docRef = doc(firestore, this.collectionPath, id);
       await updateDoc(docRef, object);
     } catch (error) {
       console.error('Error updating document: ', error);
@@ -31,7 +32,7 @@ class DAOService {
 
   async delete(id) {
     try {
-      const docRef = doc(firestore, this.collectionRef.path, id);
+      const docRef = doc(firestore, this.collectionPath, id);
       await deleteDoc(docRef);
     } catch (error) {
       console.error('Error deleting document: ', error);
@@ -57,14 +58,14 @@ class DAOService {
 
   async get(id) {
     try {
-      const docRef = doc(firestore, this.collectionRef.path, id);
-      const docSnap = await getDoc(docRef);
+      const docRef = doc(firestore, this.collectionPath, id);
+      const snap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() };
-      } else {
+      if (!snap.exists()) {
         throw new Error('No such document!');
       }
+
+      return { id: snap.id, ...snap.data() };
     } catch (error) {
       console.error('Error getting document: ', error);
       throw new Error('Error getting document');
@@ -80,7 +81,7 @@ class DAOService {
       querySnapshot.forEach(doc => {
         documents.push({ id: doc.id, ...doc.data() });
       });
-      
+
       return documents;
     } catch (error) {
       console.error('Error searching documents: ', error);

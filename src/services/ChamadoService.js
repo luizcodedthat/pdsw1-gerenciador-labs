@@ -1,9 +1,31 @@
-import DAOService from './DAOService';
-import { Chamado } from '../models/ChamadoModel';
+import DAOService from "./DAOService";
+import { Chamado } from "@/models/ChamadoModel";
 
 class ChamadoService {
   constructor() {
-    this.dao = new DAOService('chamados');
+    this.dao = new DAOService("chamados");
+  }
+
+  normalize(doc) {
+    const createdAt =
+      typeof doc.createdAt === "number" ? doc.createdAt : Date.now();
+
+    const dataStr = new Date(createdAt).toLocaleDateString("pt-BR");
+
+    const statusRaw = String(doc.status ?? "aberto");
+    const status = statusRaw.charAt(0).toUpperCase() + statusRaw.slice(1);
+
+    return {
+      id: doc.id,
+      authorId: doc.authorId ?? null,
+      labId: doc.labId ?? null,
+      titulo: doc.titulo ?? "",
+      descricao: doc.descricao ?? "",
+      status,
+      createdAt,
+      data: dataStr,
+      comentario: doc.comentario ?? ""
+    };
   }
 
   async getAllTickets() {
@@ -20,18 +42,22 @@ class ChamadoService {
 
   async getTicketById(id) {
     const doc = await this.dao.get(id);
-    return new Chamado(doc);
+    return this.normalize(doc);
   }
 
   async addTicket(data) {
-    const chamado = new Chamado(data);
+    const chamado = new Chamado({
+      ...data,
+      createdAt: Date.now()
+    });
 
     if (!chamado.isValid()) {
       throw new Error("Dados do ticket são inválidos");
     }
 
     const id = await this.dao.insert(chamado.toJSON());
-    return { id, ...chamado };
+
+    return this.normalize({ id, ...chamado.toJSON() });
   }
 
   async updateTicket(id, updates) {

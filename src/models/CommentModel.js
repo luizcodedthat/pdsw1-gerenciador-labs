@@ -8,27 +8,20 @@ export class Comment {
         this.content = data.content,
         this.upvotes = data.upvotes || []
         this.createdAt = data.createdAt || new Date()
-        /*
-            upvotes = [
-                { authorId: 1, upvoteDate: 2025-11-30 },
-                { authorId: 2, upvoteDate: 2025-11-30 }
-            ]
 
-
-        */
     }
 
     isValid() {
         if (!this.labId) return false;
         if (!this.authorId) return false;
         if (!this.content.trim()) return false;
-        
+
         return true;
     }
 
     userHasUpvoted(user) {
         if (this.upvotes.find((upvote) => user.id == upvote.authorId)) return true;
-        
+
         return false
     }
 

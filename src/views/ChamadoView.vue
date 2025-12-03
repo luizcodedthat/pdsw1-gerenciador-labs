@@ -5,11 +5,17 @@ import ChamadoCard from '@/components/chamados/ChamadoCard.vue'
 import ChamadoModal from '@/components/chamados/ChamadoModal.vue'
 import SearchArea from '@/components/labs/SearchArea.vue'
 
+import ChamadoService from "@/services/ChamadoService"
+
+// LISTA DE CHAMADOS
 const chamados = ref([])
+
+// FILTROS DA TELA
 const filtros = ['Todos', 'Aberto', 'Em andamento', 'Concluído', 'Fechado']
 const filtroStatus = ref('Todos')
 const busca = ref('')
 
+// CHAMADOS FILTRADOS
 const chamadosFiltrados = computed(() => {
   return chamados.value
     .filter(c => filtroStatus.value === 'Todos' || c.status === filtroStatus.value)
@@ -19,6 +25,7 @@ const chamadosFiltrados = computed(() => {
     )
 })
 
+// MODAL
 const modalVisivel = ref(false)
 const chamadoSelecionado = ref(null)
 
@@ -29,32 +36,35 @@ const abrirModal = (chamado) => {
 
 const fecharModal = () => modalVisivel.value = false
 
+// 🔥 AQUI AGORA BUSCA DO FIREBASE
 const carregarChamados = async () => {
-  const res = await fetch('http://localhost:3000/chamados')
-  chamados.value = await res.json()
+  try {
+    const lista = await ChamadoService.getAllChamados()
+
+    // ordenar por data decrescente
+    chamados.value = lista.sort((a, b) => b.createdAt - a.createdAt)
+
+  } catch (err) {
+    console.error("Erro ao carregar chamados:", err)
+  }
 }
 
+// QUANDO SALVAR NO MODAL (EDITAR STATUS OU COMENTÁRIO)
 const salvarAlteracoes = async ({ id, status, comentario }) => {
-  const index = chamados.value.findIndex(c => c.id === id)
-  if (index !== -1) {
-    const chamado = chamados.value[index]
+  try {
+    await ChamadoService.updateChamado(id, {
+      status,
+      comentario,  // <-- ESTE É O CAMPO QUE EXISTE NO FIRESTORE
+      comentarioAdicionadoEm: Date.now()
+    })
 
-    if (!chamado.comentarios) chamado.comentarios = []
-
-    const novoComentario = {
-      data: new Date().toLocaleString(),
-      texto: comentario
-    }
-    chamado.comentarios.push(novoComentario)
-
-    chamados.value[index].status = status
-    chamados.value[index].comentarios = chamado.comentarios
+    await carregarChamados()
+  } catch (err) {
+    console.error("Erro ao atualizar chamado:", err)
   }
-
 
   fecharModal()
 }
-
 onMounted(carregarChamados)
 </script>
 
