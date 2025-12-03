@@ -47,7 +47,7 @@ function criarChamado(data) {
                 <!-- ÍCONE ABRE O MODAL -->
                 <PlusCircle size="24" @click="modalAberto = true" style="cursor:pointer;" />
             </div>
-            <TicketCardList />
+            <TicketCardList :labId="id" />
         </section>
 
         <section id="comments">

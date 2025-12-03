@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import ChamadoService from "@/services/ChamadoService";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { useTicketStore } from "@/stores/useTicketStore";
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -10,6 +10,7 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue", "save"]);
 
 const auth = useAuthStore();
+const ticketStore = useTicketStore()
 
 const titulo = ref("");
 const descricao = ref("");
@@ -49,7 +50,7 @@ async function salvar() {
   };
 
   try {
-    const novoChamado = await ChamadoService.createChamado(payload);
+    const novoChamado = await ticketStore.addTicket(payload);
     emit("save", novoChamado);
     fechar();
   } catch (err) {
@@ -147,6 +148,7 @@ async function salvar() {
 .divider {
   border-top: 1px solid #e5e7eb;
   margin: 14px 0 18px;
+  color: transparent;
 }
 
 .info-block {

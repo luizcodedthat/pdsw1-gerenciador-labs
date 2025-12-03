@@ -5,10 +5,13 @@ import ChamadoCard from '@/components/chamados/ChamadoCard.vue'
 import ChamadoModal from '@/components/chamados/ChamadoModal.vue'
 import SearchArea from '@/components/labs/SearchArea.vue'
 
-import ChamadoService from "@/services/ChamadoService"
+import { useTicketStore } from '@/stores/useTicketStore'
 
-// LISTA DE CHAMADOS
-const chamados = ref([])
+const ticketStore = useTicketStore()
+
+onMounted(async () => {
+  await ticketStore.loadAllTickets()
+})
 
 // FILTROS DA TELA
 const filtros = ['Todos', 'Aberto', 'Em andamento', 'Concluído', 'Fechado']
@@ -17,7 +20,7 @@ const busca = ref('')
 
 // CHAMADOS FILTRADOS
 const chamadosFiltrados = computed(() => {
-  return chamados.value
+  return ticketStore.tickets
     .filter(c => filtroStatus.value === 'Todos' || c.status === filtroStatus.value)
     .filter(c =>
       c.titulo.toLowerCase().includes(busca.value.toLowerCase()) ||
@@ -36,36 +39,20 @@ const abrirModal = (chamado) => {
 
 const fecharModal = () => modalVisivel.value = false
 
-// 🔥 AQUI AGORA BUSCA DO FIREBASE
-const carregarChamados = async () => {
-  try {
-    const lista = await ChamadoService.getAllChamados()
-
-    // ordenar por data decrescente
-    chamados.value = lista.sort((a, b) => b.createdAt - a.createdAt)
-
-  } catch (err) {
-    console.error("Erro ao carregar chamados:", err)
-  }
-}
-
 // QUANDO SALVAR NO MODAL (EDITAR STATUS OU COMENTÁRIO)
 const salvarAlteracoes = async ({ id, status, comentario }) => {
   try {
-    await ChamadoService.updateChamado(id, {
+    await ticketStore.updateTicket(id, {
       status,
-      comentario,  // <-- ESTE É O CAMPO QUE EXISTE NO FIRESTORE
-      comentarioAdicionadoEm: Date.now()
+      comentario  // <-- ESTE É O CAMPO QUE EXISTE NO FIRESTORE
     })
 
-    await carregarChamados()
   } catch (err) {
     console.error("Erro ao atualizar chamado:", err)
   }
 
   fecharModal()
 }
-onMounted(carregarChamados)
 </script>
 
 <template>

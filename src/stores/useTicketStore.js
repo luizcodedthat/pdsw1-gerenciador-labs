@@ -119,19 +119,15 @@ export const useTicketStore = defineStore("tickets", {
         async updateTicket(ticketId, updates) {
             this.loading = true;
 
-            // Atualiza no Firebase via service
             const updated = await ChamadoService.updateTicket(ticketId, updates);
 
-            // Atualiza no array principal
             const index = this.tickets.findIndex(t => t.id === ticketId);
             if (index !== -1) {
                 this.tickets[index] = updated;
             }
 
-            // Atualiza no cache por ID
             this.ticketById[ticketId] = updated;
 
-            // Atualiza no cache por laboratório
             const labId = updated.labId;
             if (labId && this.ticketsByLab[labId]) {
                 const labIndex = this.ticketsByLab[labId].findIndex(t => t.id === ticketId);
@@ -140,7 +136,6 @@ export const useTicketStore = defineStore("tickets", {
                 }
             }
 
-            // Reordena lista principal pela data de criação
             this.tickets.sort((a, b) => b.createdAt - a.createdAt);
 
             this.loading = false;
