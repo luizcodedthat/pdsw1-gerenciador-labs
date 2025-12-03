@@ -2,21 +2,20 @@
 import { ref, onMounted } from "vue";
 import ChamadoService from "@/services/ChamadoService";
 import { useAuthStore } from "@/stores/useAuthStore";
-const auth = useAuthStore()
-
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
   labId: { type: String, required: true }
 });
-
 const emit = defineEmits(["update:modelValue", "save"]);
+
+const auth = useAuthStore();
 
 const titulo = ref("");
 const descricao = ref("");
 const dataAtual = ref("");
+const loading = ref(false);
 
-// Define a data no formato BR
 onMounted(() => {
   const hoje = new Date().toLocaleDateString("pt-BR", {
     day: "2-digit",
@@ -38,8 +37,9 @@ async function salvar() {
     return;
   }
 
-  const payload = {
+  loading.value = true;
 
+  const payload = {
     authorId: auth.user ? auth.user.uid : null,
     labId: props.labId,
     titulo: titulo.value.trim(),
@@ -50,12 +50,13 @@ async function salvar() {
 
   try {
     const novoChamado = await ChamadoService.createChamado(payload);
-
-    emit("save", novoChamado); // devolve o chamado criado
+    emit("save", novoChamado);
     fechar();
   } catch (err) {
     console.error("Erro ao criar chamado:", err);
     alert("Erro ao criar chamado.");
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -63,7 +64,6 @@ async function salvar() {
 <template>
   <div v-if="modelValue" class="modal-overlay">
     <div class="modal">
-
       <div class="modal-header">
         <h2>Novo Chamado</h2>
         <button class="btn-close" @click="fechar">✕</button>
@@ -90,9 +90,8 @@ async function salvar() {
 
       <div class="modal-footer">
         <button class="btn-cancel" @click="fechar">Cancelar</button>
-        <button class="btn-save" @click="salvar">Salvar</button>
+        <button class="btn-save" @click="salvar" :disabled="loading">{{ loading ? 'Salvando...' : 'Salvar' }}</button>
       </div>
-
     </div>
   </div>
 </template>

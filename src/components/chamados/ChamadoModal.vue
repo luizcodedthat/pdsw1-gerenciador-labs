@@ -7,7 +7,7 @@ const props = defineProps({
   visivel: Boolean,
 });
 
-const emits = defineEmits(["fechar", "salvar"]);
+const emit = defineEmits(["fechar", "salvar"]);
 
 const novoStatus = ref("");
 const comentario = ref("");
@@ -15,44 +15,46 @@ const comentario = ref("");
 watch(
   () => props.chamado,
   (val) => {
-    if (val) {
-      novoStatus.value = val.status || "";
-      comentario.value = "";
-    }
-  }
+    if (!val) return;
+
+    novoStatus.value = val.status ?? "";
+
+    comentario.value = val.comentario ?? "";
+  },
+  { immediate: true }
 );
 
-const fecharModal = () => emits("fechar");
+const fecharModal = () => emit("fechar");
 
 const salvar = () => {
-  emits("salvar", {
+  if (!props.chamado) return;
+
+  emit("salvar", {
     id: props.chamado.id,
-    status: novoStatus.value,
-    comentario: comentario.value,
+    status: (novoStatus.value || props.chamado.status).toString(),
+    comentario: comentario.value?.trim() || "",
   });
 };
 
-const isFinalizado = computed(() =>
-  ["Concluído", "Fechado"].includes(props.chamado?.status)
-);
+const isFinalizado = computed(() => {
+  const st = (props.chamado?.status || "").toLowerCase();
+  return ["concluído", "concluido", "fechado"].includes(st);
+});
 
 const statusClass = computed(() => {
-  const status = props.chamado?.status?.toLowerCase() || "";
+  const status = (props.chamado?.status || "").toLowerCase();
   if (status.includes("andamento")) return "em-andamento";
   if (status.includes("aberto")) return "aberto";
-  if (status.includes("concluído")) return "concluido";
+  if (status.includes("concluido") || status.includes("concluído")) return "concluido";
   if (status.includes("fechado")) return "fechado";
   return "";
 });
 
-const formatarData = (data) => {
-  if (!data) return "";
-  const d = new Date(data);
-  return d.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
+const formatarData = (dataOrTimestamp) => {
+  if (!dataOrTimestamp) return "";
+  if (typeof dataOrTimestamp === "string" && dataOrTimestamp.includes("/")) return dataOrTimestamp;
+
+  return new Date(dataOrTimestamp).toLocaleDateString("pt-BR");
 };
 </script>
 
@@ -64,58 +66,40 @@ const formatarData = (data) => {
       @click.self="fecharModal"
       role="dialog"
       aria-modal="true"
-      :aria-labelledby="`titulo-${chamado?.id}`"
     >
-      <div class="modal" ref="modalEl" tabindex="-1">
-        <!-- HEADER -->
+      <div class="modal" tabindex="-1">
         <header class="modal-header">
           <div class="title-wrap">
-            <h2 :id="`titulo-${chamado?.id}`">Chamado #{{ chamado?.id }}</h2>
+            <h2>Chamado</h2><h2 class="lab-id"> #LAB-{{ chamado.labId.replace("lab", "").padStart(2, "0") }}</h2>
             <span class="badge" :class="statusClass">{{ chamado?.status }}</span>
           </div>
-          <button class="btn-close" @click="fecharModal" aria-label="Fechar modal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M18 6L6 18M6 6l12 12"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+          <button class="btn-close" @click="fecharModal" aria-label="Fechar modal">✕</button>
         </header>
 
         <hr class="divider" />
 
-        <!-- BLOCO DE INFORMAÇÕES -->
-        <section class="info-block">
+        <section class="info-block" v-if="chamado">
           <div class="info-item">
             <label>Data:</label>
-            <p>{{ formatarData(chamado?.data) }}</p>
+            <p>{{ formatarData(chamado.data ?? chamado.createdAt) }}</p>
           </div>
 
           <div class="info-item">
             <label>Título:</label>
-            <p>{{ chamado?.titulo }}</p>
+            <p>{{ chamado.titulo }}</p>
           </div>
 
           <div class="info-item">
             <label>Descrição:</label>
-            <p class="descricao">{{ chamado?.descricao }}</p>
+            <p class="descricao">{{ chamado.descricao }}</p>
           </div>
         </section>
 
-        <!-- BLOCO DE EDIÇÃO -->
         <section class="edit-block">
           <div class="field">
             <label class="field-label">Status</label>
             <select v-model="novoStatus" class="select" :disabled="isFinalizado">
-              <option
-                v-for="f in filtros.filter(x => x !== 'Todos')"
-                :key="f"
-                :value="f"
-              >
+              <option v-for="f in filtros.filter((x) => x !== 'Todos')" :key="f" :value="f">
                 {{ f }}
               </option>
             </select>
@@ -133,7 +117,6 @@ const formatarData = (data) => {
           </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="modal-footer">
           <button class="btn-cancel" @click="fecharModal">Fechar</button>
           <button class="btn-save" :disabled="isFinalizado" @click="salvar">
@@ -144,7 +127,6 @@ const formatarData = (data) => {
     </div>
   </transition>
 </template>
-
 
 <style scoped>
 /* Overlay */
@@ -217,16 +199,20 @@ const formatarData = (data) => {
   text-transform: capitalize;
 }
 .badge.em-andamento {
-  background: #fdba74; color: #9a3412;;
+  background: #fdba74;
+  color: #9a3412;
 }
 .badge.aberto {
-  background: #fde68a; color: #92400e;
+  background: #fde68a;
+  color: #92400e;
 }
 .badge.concluido {
-  background: #bbf7d0; color: #166534;
+  background: #bbf7d0;
+  color: #166534;
 }
 .badge.fechado {
-  background: #fecaca; color: #991b1b;
+  background: #fecaca;
+  color: #991b1b;
 }
 
 /* BLOCO DE INFORMAÇÕES */
@@ -322,5 +308,15 @@ const formatarData = (data) => {
 .modal-fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
+}
+
+.lab-id {
+  background: #eef3ff;
+  color: #002df7;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-block;
 }
 </style>

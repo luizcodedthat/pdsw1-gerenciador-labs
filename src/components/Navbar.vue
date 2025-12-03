@@ -19,10 +19,10 @@ const userName = computed(() => {
 
   const parts = fullName.trim().split(" ")
 
-  // se só tem 1 nome, retorna ele
+
   if (parts.length === 1) return parts[0]
 
-  // retorna Nome + Sobrenome
+
   return parts[0] + " " + parts[1]
 })
 

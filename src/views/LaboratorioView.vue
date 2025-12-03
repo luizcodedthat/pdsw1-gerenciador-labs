@@ -10,7 +10,7 @@ import { useLabStore } from '@/stores/useLabStore'
 import LabInfo from '@/components/lab/LabInfo.vue'
 
 
-import CreateModal from '@/components/chamados/CreateModal.vue'
+import TicketTicketCreateModal from '@/components/lab/TicketCreateModal.vue'
 
 
 const modalAberto = ref(false)
@@ -67,7 +67,7 @@ function criarChamado(data) {
         </section>
 
         <!-- MODAL CHAMADO -->
-        <CreateModal
+        <TicketTicketCreateModal
             v-model="modalAberto"
             @save="criarChamado"
             :labId="id"

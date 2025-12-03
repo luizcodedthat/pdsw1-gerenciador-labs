@@ -12,21 +12,17 @@ export class Recurrence {
     this.labId = data.labId || null;
     this.authorId = data.authorId || null;
 
-    this.intervals = data.intervals || []; 
-    // Exemplo:
-    // [
-    //   { startSlot: 3, endSlot: 5 },
-    //   { startSlot: 7, endSlot: 8 }
-    // ]
+    this.intervals = data.intervals || [];
 
-    this.type = data.type || RECURRENCY_TYPE.WEEKLY; 
+
+    this.type = data.type || RECURRENCY_TYPE.WEEKLY;
 
 
     this.fromDate = data.from || null;
     this.untilDate = data.until || null;
 
-    this.daysOfWeek = data.daysOfWeek || [];  
-    // [1,3,5] para seg/qua/sex  (1 = Monday)
+    this.daysOfWeek = data.daysOfWeek || [];
+
 
     this.createdAt = data.createdAt || new Date();
   }
@@ -61,8 +57,8 @@ export class Recurrence {
     if (this.type === RECURRENCY_TYPE.DAILY) return true;
 
     if (this.type === RECURRENCY_TYPE.WEEKLY) {
-      const weekday = date.getDay(); // 0 = domingo
-      const normalized = weekday === 0 ? 7 : weekday; // 1–7
+      const weekday = date.getDay();
+      const normalized = weekday === 0 ? 7 : weekday;
       return this.daysOfWeek.includes(normalized);
     }
 
