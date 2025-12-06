@@ -48,6 +48,10 @@ const createdAt = computed(() => {
   });
 });
 
+const limitarTexto = (texto = "", limite = 0) => {
+  if (!texto) return "";
+  return texto.length > limite ? texto.substring(0, limite) + "..." : texto;
+};
 
 </script>
 
@@ -64,8 +68,8 @@ const createdAt = computed(() => {
             </div>
         </div>
         <div class="card-info">
-            <h3 class="ticket-title"> {{ title }} </h3>
-            <p class="ticket-message"> {{ message }} </p>
+            <h3 class="ticket-title"> {{ limitarTexto(title, 30) }} </h3>
+            <p class="ticket-message"> {{ limitarTexto(message, 75) }} </p>
         </div>
 
     </div>
