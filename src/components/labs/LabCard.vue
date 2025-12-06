@@ -102,7 +102,7 @@ const availabilityText = computed(() => {
 </script>
 
 <template>
-  <div class="lab-card">
+  <div class="lab-card" :class="{ 'reserved-lab': currentReservation }">
     
     <div class="card-top">
       <alarm-clock size="16" />
@@ -167,5 +167,9 @@ const availabilityText = computed(() => {
   margin-top: .4rem;
   color: hsl(0, 0%, 100%);
   font-size: var(--font-size-sm);
+}
+
+.lab-card.reserved-lab {
+  border-left: 6px solid #fb2c36;
 }
 </style>
