@@ -6,12 +6,12 @@ export const USER_ROLES = {
 
 export class User {
   constructor(data = {}) {
-    this.id = data.id || null;
-    this.userId = data.userId || null;
-    this.name = data.name || '';
-    this.email = data.email || '';
-    this.picture = data.picture || '',
-    this.accountType = data.accountType || USER_ROLES.STUDENT;
+    this.id = data.id ?? null;
+    this.userId = data.userId ?? null;
+    this.name = data.name ?? '';
+    this.email = data.email ?? '';
+    this.picture = data.picture ?? '',
+    this.accountType = data.accountType ?? USER_ROLES.STUDENT;
   }
 
   isValid() {

@@ -29,10 +29,10 @@ const statusText = computed(() => {
 
 const statusClass = computed(() => {
     return {
-        'open-tag': statusText.value === 'open',
-        'in-progress-tag': statusText.value === 'in progress',
-        'finished-tag': statusText.value === 'finished',
-        'closed-tag': statusText.value === 'closed',
+        'open-tag': statusText.value === 'Aberto',
+        'in-progress-tag': statusText.value === 'Em andamento',
+        'finished-tag': statusText.value === 'Concluído',
+        'closed-tag': statusText.value === 'Fechado',
     };
 });
 
@@ -48,6 +48,10 @@ const createdAt = computed(() => {
   });
 });
 
+const limitarTexto = (texto = "", limite = 0) => {
+  if (!texto) return "";
+  return texto.length > limite ? texto.substring(0, limite) + "..." : texto;
+};
 
 </script>
 
@@ -64,8 +68,8 @@ const createdAt = computed(() => {
             </div>
         </div>
         <div class="card-info">
-            <h3 class="ticket-title"> {{ title }} </h3>
-            <p class="ticket-message"> {{ message }} </p>
+            <h3 class="ticket-title"> {{ limitarTexto(title, 30) }} </h3>
+            <p class="ticket-message"> {{ limitarTexto(message, 75) }} </p>
         </div>
 
     </div>
@@ -104,19 +108,23 @@ const createdAt = computed(() => {
 }
 
 .open-tag {
-    background-color: hsl(50, 98%, 64%);
+  background: #fde68a;
+  color: #92400e;
 }
 
 .in-progress-tag {
-    background-color: hsl(31, 97%, 72%);
+  background: #fdba74;
+  color: #9a3412;
 }
 
 .finished-tag {
-    background-color: hsl(142, 77%, 73%);
+  background: #bbf7d0;
+  color: #166534;
 }
 
 .closed-tag {
-    background-color: hsl(0, 94%, 82%);
+  background: #fecaca;
+  color: #991b1b;
 }
 
 .card-info {

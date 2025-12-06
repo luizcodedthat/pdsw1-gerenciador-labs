@@ -1,12 +1,12 @@
 export class Lab {
   constructor(data = {}) {
-    this.id = data.id || null;
-    this.name = data.name || '';
-    this.category = data.category || 'Laboratório de Informática';
-    this.capacity = data.capacity || 0;
-    this.local = data.local || '';
-    this.available = data.available || true;
-    this.createdAt = data.createdAt || null;
+    this.id = data.id ?? null;
+    this.name = data.name ?? '';
+    this.category = data.category ?? 'Laboratório de Informática';
+    this.capacity = data.capacity ?? 0;
+    this.local = data.local ?? '';
+    this.available = data.available ?? true;
+    this.createdAt = data.createdAt ?? null;
   }
 
   isValid() {
@@ -25,8 +25,7 @@ export class Lab {
     
     const fields = [
       this.name.toLowerCase(),
-      this.category.toLowerCase(),
-      this.local.toLowerCase()
+      this.category.toLowerCase()
     ]
 
     return fields.some(field => field.includes(term))
