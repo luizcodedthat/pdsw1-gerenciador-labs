@@ -6,8 +6,8 @@ export class Comment {
         this.authorId = data.authorId,
         this.authorName = data.authorName,
         this.content = data.content,
-        this.upvotes = data.upvotes || []
-        this.createdAt = data.createdAt || new Date()
+        this.upvotes = data.upvotes ?? []
+        this.createdAt = data.createdAt ?? new Date()
 
     }
 

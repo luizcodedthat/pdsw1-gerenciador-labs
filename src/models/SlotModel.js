@@ -1,9 +1,9 @@
 export class Slot {
   constructor(data = {}) {
     this.index = data.index ?? null;
-    this.start = data.start || null;
-    this.end = data.end || null;
-    this.duration = data.duration || this.calculateDuration();
+    this.start = data.start ?? null;
+    this.end = data.end ?? null;
+    this.duration = data.duration ?? this.calculateDuration();
   }
 
   calculateDuration() {

@@ -1,16 +1,16 @@
 export class Reservation {
   constructor(data = {}) {
-    this.id = data.id || null;
-    this.labId = data.labId || null;
-    this.authorId = data.authorId || null;
-    this.authorName = data.authorName || '';
+    this.id = data.id ?? null;
+    this.labId = data.labId ?? null;
+    this.authorId = data.authorId ?? null;
+    this.authorName = data.authorName ?? '';
 
-    this.approved = data.approved || false;
-    this.intervals = data.intervals || [];
-    this.date = data.date || null;
-    this.description = data.description || '';
+    this.approved = data.approved ?? false;
+    this.intervals = data.intervals ?? [];
+    this.date = data.date ?? null;
+    this.description = data.description ?? '';
 
-    this.createdAt = data.createdAt || null;
+    this.createdAt = data.createdAt ?? null;
   }
 
   isValid() {
