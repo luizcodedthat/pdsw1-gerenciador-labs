@@ -25,8 +25,7 @@ export class Lab {
     
     const fields = [
       this.name.toLowerCase(),
-      this.category.toLowerCase(),
-      this.local.toLowerCase()
+      this.category.toLowerCase()
     ]
 
     return fields.some(field => field.includes(term))
